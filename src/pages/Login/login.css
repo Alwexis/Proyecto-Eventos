@@ -41,6 +41,8 @@ main #page-content #login #login-form .input-container {
   flex-direction: column;
   max-width: 300px;
   min-width: 300px;
+}
+main #page-content #login #login-form .input-container:not(.input-recuerdame) {
   margin: 8px 4px;
 }
 main #page-content #login #login-form .input-container label {
@@ -53,7 +55,7 @@ main #page-content #login #login-form .input-container .input {
   padding: 4px 12px;
 }
 main #page-content #login #login-form .input-container .input:not(.recuerdame) {
-  background-color: var(--color-black-2);
+  background-color: var(--color-white-2);
   border: 1px solid var(--color-white-3);
   color: var(--color-white);
   border-radius: 6px;
@@ -68,13 +70,15 @@ main #page-content #login #login-form .input-container .input div {
 }
 main #page-content #login #login-form .input-container .input span:nth-child(1) {
   margin-right: 8px;
+  color: var(--color-black);
 }
 main #page-content #login #login-form .input-container .input span:nth-child(2) {
   margin-left: 8px;
+  color: var(--color-black);
 }
 main #page-content #login #login-form .input-container .input input:not([type=checkbox]) {
   border: none;
-  background-color: var(--color-black-2);
+  background-color: var(--color-white-2);
   width: 100%;
 }
 main #page-content #login #login-form .input-container .input input:is([type=checkbox]) {
@@ -102,14 +106,78 @@ main #page-content #login #login-form .submit-button:hover {
   background-color: var(--color-blue-variant);
   color: var(--color-black-2);
 }
+main #page-content #login .otras-opciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main #page-content #login .otras-opciones div {
+  display: flex;
+  align-items: center;
+  margin: 6px 2px;
+}
+main #page-content #login .otras-opciones div span {
+  margin: 0px 6px;
+}
+main #page-content #login .otras-opciones div a {
+  text-decoration: none;
+  color: var(--color-indigo);
+}
+main #page-content #login .social-login {
+  margin: 8px 0px;
+}
+main #page-content #login .social-login div {
+  display: flex;
+  align-items: center;
+  color: var(--color-black);
+  fill: var(--color-black);
+  margin: 10px 2px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--color-white-2);
+  box-shadow: var(--color-white-4) 0px 1px 3px 0px, var(--color-white-4) 0px 0px 0px 1px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+main #page-content #login .social-login div:hover {
+  transform: scale(1.05);
+}
+main #page-content #login .social-login div.google {
+  background-color: var(--color-pink);
+}
+main #page-content #login .social-login div.google:hover {
+  background-color: var(--color-pink-variant);
+}
+main #page-content #login .social-login div.microsoft {
+  background-color: var(--color-indigo);
+}
+main #page-content #login .social-login div.microsoft:hover {
+  background-color: var(--color-indigo-variant);
+}
+main #page-content #login .social-login div * {
+  margin: 0px 6px;
+}
 main #page-content #gallery {
   width: 40%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 0px 28px;
+}
+main #page-content #gallery span {
+  font-size: 20px;
+  font-weight: 800;
+}
+main #page-content #gallery p {
+  font-size: 14px;
+  text-align: center;
+  margin: 8px 0px;
+  font-style: oblique;
+  color: var(--color-black-4);
 }
 main #page-content #gallery img {
   min-width: 320px;
   max-width: 320px;
   max-height: 320px;
+  margin: 6px 0px;
 }
