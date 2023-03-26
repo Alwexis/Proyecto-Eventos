@@ -1,0 +1,215 @@
+body,
+html {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-family: "Helvetica Now";
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+@media (min-width: 950px) {
+  #go-top {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+  }
+  #go-top.hidden {
+    display: none;
+  }
+  #go-top.shown {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-white-4);
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--color-white-2) 0px 0px 4px 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  #go-top.shown span {
+    font-size: 40px;
+    transition: all 0.2s;
+  }
+  #go-top.shown:hover {
+    transform: scale(1.05);
+    background-color: var(--color-white-2);
+    box-shadow: var(--color-white-4) 0px 0px 4px 1px;
+  }
+  #go-top.shown:hover span {
+    font-size: 44px;
+  }
+  #title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 24px 28px;
+  }
+  #title div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  #title div h1 {
+    margin: 2.5vh 2vh 1.5vh 2vh;
+  }
+  #title::after {
+    content: "";
+    display: block;
+    width: 25%;
+    height: 1px;
+    background-color: var(--color-black);
+    transition: all 0.4s;
+  }
+}
+* {box-sizing:border-box}
+
+.slideshow-container {
+  max-width: 680px;
+  float: center;
+  padding: 20 px;
+  margin: auto;
+}
+
+/* .row { 
+  width: 650px; 
+  background: rgb(48, 54, 59); 
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 8px;
+}  */
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.badge {
+  margin-top: -5px;
+}
+
+.container--somos {
+  padding: 2rem 0px 0px;
+}
+
+@media screen and (min-width: 1024px) {
+  .container--somos {
+    padding: 3rem
+  }
+}
+
+.row-block {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.titulos--somos {
+  padding-bottom: 3rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 4rem;
+}
+
+  .titulos--somos .titulos h1 {
+    color: rgb(159 75 201);
+  }
+
+.block {
+  padding: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .block {
+    padding: 1rem;
+  }
+}
+
+.block .txt {
+  padding-top: 2rem;
+}
+
+.block h3 {
+
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.block h3, .block p {
+  color: #FFF;
+}
+
+.block p {
+  font-size: 1.4rem;
+}
+
+.block strong {
+  color: rgb(159 75 201);
+  font-size: 1.3rem;
+}
+
+.block .somos {
+  padding-top: 3.5rem;
+}
+
+.ticket {
+  background: #1c1b1e;
+  border: 2px solid rgb(65, 38, 79);
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 1024px) {
+  .ticket {
+    margin-bottom: 1rem;
+  }
+}
+
+.store{
+  padding: 1rem;
+  background: #1c1b1e;
+  border: 2px solid rgb(65, 38, 79);
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 256px) {
+  .store {
+    min-height: 160px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .store {
+    min-height: 200px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .store {
+    min-height: 180px;
+  }
+}
+
+.store h3 {
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 1.8rem;
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .store h3 {
+    padding-top: 0rem;
+  }
+}
+
+.store h3, .store p {
+  color: #FFF;
+}
+
+.store p {
+  font-size: 1.4rem;
+}
