@@ -14,41 +14,10 @@
 </head>
 <body>
     <main>
-        <!--* Only for Mobile Devices -->
-        <section id="mobile-header">
-            <span class="material-symbols-outlined">
-                book_online
-            </span>
-        </section>
-        <!--* Only for Mobile Devices -->
-        
-        <section id="navbar">
-            <!-- 
-               * Cargaremos el SVG del Logo mediante una petición HTTP GET, para poder editar el color, etc.
-               * Y así no sobre cargar la página desde el código fuente con texto y hacerlo no legible.
-            -->
-            <div id="logo">
-            </div>
-            <div id="menu">
-                <div class="menu-item">
-                    <span>Eventos</span>
-                </div>
-                <div class="menu-item">
-                    <span>Acerca de</span>
-                </div>
-                <div class="active menu-item">
-                    <span>Mis Entradas</span>
-                </div>
-                <div class="menu-item profile">
-                    <span class="material-symbols-outlined">
-                        account_circle
-                    </span>
-                </div>
-            </div>
-        </section>
-
         <section id="page-content">
             <section id="login">
+                <div id="logo">
+                </div>
                 <h1 class="titulo">Ingresa a nuestra Plataforma</h1>
                 <p class="subtitulo">Puedes ingresar utilizando los datos con los cuales te registraste, o mediante Google o Microsoft.</p>
                 <form id="login-form" method="POST">
@@ -72,8 +41,8 @@
                                 </span>
                                 <input type="password" name="password" id="password" placeholder="********" required>
                             </div>
-                            <span class="material-symbols-outlined">
-                                visibility
+                            <span id="show-pwd-icon" class="material-symbols-outlined">
+                                visibility_off
                             </span>
                         </div>
                     </div>
