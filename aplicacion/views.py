@@ -28,3 +28,8 @@ def login(request):
         else:
             print('Inválido')
     return render(request, 'aplicacion/login.html')
+
+def registro(request):
+    if request.method == 'POST':
+        print('Post')
+    return render(request, 'aplicacion/registro.html')
