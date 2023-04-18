@@ -1,35 +1,64 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import re
-from aplicacion.models import Usuario
+from django.contrib.auth import login as django_login, authenticate, get_user_model, logout as django_logout
+from aplicacion.models import Evento
+from django.core.paginator import Paginator
+from django.http import Http404
+from user_agents import parse
 
 # Create your views here.
-@login_required(login_url="login")
 def home(request):
-    return render(request, 'aplicacion/home.html')
+    eventos = Evento.objects.all().order_by('id')
+    page = request.GET.get('page', 1)
+    # Obtener el agente del usuario
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    user_agent_parsed = parse(user_agent)
+    # Verificar si el agente del usuario es un dispositivo móvil
+    is_mobile = user_agent_parsed.is_mobile
+
+    try:
+        if is_mobile:
+            paginator = Paginator(eventos, 14)
+        else:
+            paginator = Paginator(eventos, 28)
+        eventos = paginator.page(page)
+    except:
+        raise Http404('No se encontraron eventos')
+
+    return render(request, 'aplicacion/home.html', { 'eventos': eventos, 'is_mobile': is_mobile })
 
 def login(request):
     if request.method == 'POST':
-        email_rut = request.POST['email-rut']
+        email = request.POST['email']
         pwd = request.POST['password']
-        email_regex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
-        usuario = None
-        if re.match("[0-9]{7,8}-([0-9]|k){1}", email_rut):
-            print('Es rut')
-            nuevoRut = email_rut.split('-')[0]
-            usuario = Usuario.objects.get(rut=nuevoRut)
-            if usuario:
-                print(usuario)
-        elif re.match(email_regex, email_rut):
-            print('Es correo')
-            usuario = Usuario.objects.get(correo_electronico=nuevoRut)
-            if usuario:
-                print(usuario)
+        authUser = authenticate(request, email=email, password=pwd)
+        if authUser is not None:
+            django_login(request, authUser)
+            return redirect('/', { 'action': 'user_logged' })
         else:
-            print('Inválido')
+            return render(request, 'aplicacion/login.html', {'error': 'cannot_log_in'})
     return render(request, 'aplicacion/login.html')
+
+def logout(request):
+    django_logout(request)
+    return redirect('login')
 
 def registro(request):
     if request.method == 'POST':
-        print('Post')
+        nombre = request.POST['nombre']
+        apellido = request.POST['apellido']
+        rut = request.POST['rut'].split('-')[0]
+        dv = request.POST['rut'].split('-')[1]
+        correo = request.POST['email']
+        contrasena = request.POST['password']
+
+        UserModel = get_user_model()
+        usuario = UserModel.objects.create_user(rut=rut, password=contrasena, dv=dv, nombres=nombre, apellidos=apellido, email=correo)
+        try:
+            usuario.save()
+            authenticate(request, rut=rut, password=contrasena)
+            login(request)
+            return redirect('/', { 'action': 'user_registered' })
+        except Exception as e:
+            return render(request, 'aplicacion/registro.html', {'error': 'Error al registrar usuario'})
     return render(request, 'aplicacion/registro.html')

@@ -26,13 +26,13 @@
                 <form id="login-form" method="POST">
                     {% csrf_token %}
                     <div class="input-container">
-                        <label for="email-username">Correo Electrónico o RUT</label>
+                        <label for="email-username">Correo Electrónico</label>
                         <div class="input">
                             <div>
                                 <span class="material-symbols-outlined">
                                     mail
                                 </span>
-                                <input type="text" name="email-rut" id="email-rut" placeholder="example@gmail.com... 20919721-9..." required>
+                                <input type="text" name="email" id="email" placeholder="example@gmail.com" required>
                             </div>
                         </div>
                     </div>
@@ -58,6 +58,14 @@
                             </div>
                         </div>
                     </div>
+                    {% if error %}
+                        <div class="error-container">
+                            <span class="material-symbols-outlined">
+                                error_outline
+                            </span>
+                            <span class="error-msg">Correo electrónico o contraseña incorrectos</span>
+                        </div>
+                    {% endif %}
                     <button type="submit" class="submit-button">
                         <span class="material-symbols-outlined">
                             login

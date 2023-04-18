@@ -1,0 +1,100 @@
+@media (min-width: 950px) {
+  html, body {
+    height: 100%;
+  }
+  main {
+    background-color: var(--color-white-2);
+    padding: 0.75rem;
+    margin: 1rem;
+    border-radius: 0.2rem;
+  }
+  main .search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .search-container .search-input-container {
+    display: flex;
+    align-items: center;
+    background: var(--color-white);
+    border-radius: 1rem;
+    padding: 0.7rem 1rem;
+    width: 30%;
+  }
+  main .search-container .search-input-container i {
+    display: flex;
+    margin: 0 0.2rem 0 0;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  main .search-container .search-input-container i:hover {
+    transform: scale(1.1);
+  }
+  main .search-container .search-input-container .division {
+    width: 1px;
+    height: 0.85rem;
+    background: var(--color-black);
+    margin: 0 0.2rem;
+  }
+  main .search-container .search-input-container input {
+    width: 100%;
+    border: none;
+    background: none;
+    color: var(--color-black-2);
+  }
+  main .search-container .search-input-container input:focus-visible {
+    outline: none;
+  }
+  main .eventos {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 950px) {
+  html, body {
+    height: 100%;
+  }
+  main {
+    background-color: var(--color-white-2);
+    padding: 0.75rem;
+    margin: 0.4rem 0.75rem;
+    border-radius: 0.2rem;
+  }
+  main .search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .search-container .search-input-container {
+    display: flex;
+    align-items: center;
+    background: var(--color-white);
+    border-radius: 1rem;
+    padding: 0.7rem 1rem;
+    width: 80%;
+  }
+  main .search-container .search-input-container i {
+    display: flex;
+    margin: 0 0.2rem 0 0;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  main .search-container .search-input-container i:hover {
+    transform: scale(1.1);
+  }
+  main .search-container .search-input-container .division {
+    width: 1px;
+    height: 0.85rem;
+    background: var(--color-black);
+    margin: 0 0.2rem;
+  }
+  main .search-container .search-input-container input {
+    width: 100%;
+    border: none;
+    background: none;
+    color: var(--color-black-2);
+  }
+  main .search-container .search-input-container input:focus-visible {
+    outline: none;
+  }
+}

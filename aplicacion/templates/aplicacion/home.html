@@ -1,12 +1,160 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ticket on Point</title>
+    <!-- Google Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{% static 'aplicacion/global/global.css' %}">
+    <link rel="stylesheet" href="{% static 'aplicacion/home/home.css' %}">
+    <link rel="icon" href="{% static 'aplicacion/assets/images/icono.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'aplicacion/global/global.js' %}"></script>
+    <script src="{% static 'aplicacion/home/home.js' %}"></script>
 </head>
+
 <body>
-    <h1>Hi!</h1>
+    <!-- Utilizaremos un Template a modo de "componente" -->
+    {% include 'components/header.html' %}
+
+    <main>
+        <section class="search-container">
+            <h1>Busca tu evento</h1>
+            <div class="search-input-container">
+                <i class="bi bi-search search-icon"></i>
+                <div class="division"></div>
+                <input type="text" placeholder="Museo... Young Cis...">
+            </div>
+        </section>
+        <section class="eventos">
+            <div class="eventos-container">
+                {% for evento in eventos %}
+                {% if is_mobile %}
+                <div class="evento">
+                    <span class="nombre-evento">JOSÉ MADERO Giallo FantastiqueTour II</span>
+                    <div class="evento-top-side">
+                        <div class="imagen-evento">
+                            <img src="{{evento.imagen}}" alt="{{evento.nombre}}">
+                        </div>
+                        <div class="informacion-evento-container">
+                            <div class="informacion-evento">
+                                <span class="material-symbols-outlined">
+                                    calendar_month
+                                </span>
+                                <p>{{evento.fecha}}</p>
+                            </div>
+                            <div class="informacion-evento">
+                                <span class="material-symbols-outlined">
+                                    location_on
+                                </span>
+                                <p>{{evento.lugar}}</p>
+                            </div>
+                            <div class="informacion-evento">
+                                <span class="material-symbols-outlined">
+                                    payments
+                                </span>
+                                <p>{{evento.precio}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="boton-evento-container" href="{{evento.url}}" target="_blank">
+                        <div class="boton-evento">
+                            <span>Ver Evento</span>
+                        </div>
+                    </a>
+                </div>
+                {% else %}
+                <div class="evento">
+                    <div class="imagen-evento">
+                        {% if evento.imagen == 'No disponible' %}
+                        <img src="https://cliply.co/wp-content/uploads/2021/09/142109670_SAD_CAT_400.gif"
+                            alt="Imagen no Disponible">
+                        <span class="no-image-text">Imagen no disponible :(</span>
+                        {% else %}
+                        <img src="{{evento.imagen}}" alt="{{evento.nombre}}">
+                        {% endif %}
+                    </div>
+                    <span class="nombre-evento">{{evento.nombre}}</span>
+                    <p class="descripcion-evento">{{evento.descripcion}}</p>
+                    <div class="informacion-evento-container">
+                        <div class="informacion-evento">
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                            <p>{{evento.fecha}}</p>
+                        </div>
+                        <div class="informacion-evento">
+                            <span class="material-symbols-outlined">
+                                location_on
+                            </span>
+                            <p>{{evento.lugar}}</p>
+                        </div>
+                        <div class="informacion-evento">
+                            <span class="material-symbols-outlined">
+                                payments
+                            </span>
+                            <p>{{evento.precio}}</p>
+                        </div>
+                    </div>
+                    <a class="boton-evento-container" href="{{evento.url}}" target="_blank">
+                        <div class="boton-evento">
+                            <span>Ver Evento</span>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <!-- Mostrar los enlaces de paginación -->
+            <div class="eventos-pagination pagination">
+                <span class="step-links">
+                    {% if eventos.has_previous %}
+                    <a href="?page=1" class="first">
+                        <span class="material-symbols-outlined">
+                            first_page
+                        </span>
+                    </a>
+                    <a href="?page={{ eventos.previous_page_number }}" class="previous">
+                        <span class="material-symbols-outlined">
+                            navigate_before
+                        </span>
+                    </a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ eventos.number }} de {{ eventos.paginator.num_pages }}
+                    </span>
+
+                    {% if eventos.has_next %}
+                    <a href="?page={{ eventos.next_page_number }}" class="next">
+                        <span class="material-symbols-outlined">
+                            navigate_next
+                        </span>
+                    </a>
+                    <a href="?page={{ eventos.paginator.num_pages }}" class="last">
+                        <span class="material-symbols-outlined">
+                            last_page
+                        </span>
+                    </a>
+                    {% endif %}
+                </span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lo mismo que el Header, pero esta vez con el footer -->
+    {% include 'components/footer.html' %}
+
+    <!-- Y exactamente lo mismo, otra vez. Pero esta vez con el menú para teléfonos -->
+    {% include 'components/mobile-menu.html' %}
 </body>
+
 </html>

@@ -1,4 +1,8 @@
 @media (min-width: 950px) {
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
   main {
     padding: 38px 24px;
   }
@@ -41,7 +45,7 @@
     align-content: center;
     justify-content: center;
     width: 60%;
-    margin: 8px 32px;
+    margin: 2px 32px;
   }
   main #page-content #login #login-form .input-container {
     display: flex;
@@ -103,6 +107,19 @@
   main #page-content #login #login-form .input-container .input input:focus {
     outline: none;
   }
+  main #page-content #login #login-form .error-container {
+    display: flex;
+    align-items: center;
+    color: var(--color-red);
+    font-size: 0.75rem;
+    margin: 1rem 0;
+  }
+  main #page-content #login #login-form .error-container span {
+    margin: 0px 2px;
+  }
+  main #page-content #login #login-form .error-container .material-symbols-outlined {
+    font-size: 0.75rem;
+  }
   main #page-content #login #login-form .submit-button {
     display: flex;
     align-items: center;
@@ -113,6 +130,7 @@
     cursor: pointer;
     transition: all 0.2s;
     padding: 6px 8px;
+    margin: 0.6rem 0;
     border-radius: 24px;
   }
   main #page-content #login #login-form .submit-button span {
@@ -131,6 +149,7 @@
     display: flex;
     align-items: center;
     margin: 6px 2px;
+    font-size: 0.75rem;
   }
   main #page-content #login .otras-opciones div span {
     margin: 0px 6px;
@@ -233,7 +252,7 @@
     align-self: center;
     align-content: center;
     justify-content: center;
-    margin: 8px;
+    margin: 2px 8px;
   }
   main #login #login-form .input-container {
     display: flex;
@@ -290,12 +309,26 @@
     background-color: var(--color-white-2);
     width: 100%;
     padding: 6px 0px;
+    font-size: 1rem;
   }
   main #login #login-form .input-container .input input:is([type=checkbox]) {
     margin-right: 14px;
   }
   main #login #login-form .input-container .input input:focus {
     outline: none;
+  }
+  main #login #login-form .error-container {
+    display: flex;
+    align-items: center;
+    color: var(--color-red);
+    font-size: 0.75rem;
+    margin: 1rem 0;
+  }
+  main #login #login-form .error-container span {
+    margin: 0px 2px;
+  }
+  main #login #login-form .error-container .material-symbols-outlined {
+    font-size: 0.75rem;
   }
   main #login #login-form .submit-button {
     display: flex;
@@ -318,7 +351,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 12px;
+    font-size: 0.8rem;
   }
   main #login .otras-opciones div {
     display: flex;
