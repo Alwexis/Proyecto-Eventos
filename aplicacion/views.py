@@ -62,3 +62,7 @@ def registro(request):
         except Exception as e:
             return render(request, 'aplicacion/registro.html', {'error': 'Error al registrar usuario'})
     return render(request, 'aplicacion/registro.html')
+
+def evento(request, id):
+    evento = Evento.objects.get(id=id)
+    return render(request, 'aplicacion/evento.html', { 'evento': evento })

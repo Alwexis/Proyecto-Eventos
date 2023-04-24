@@ -116,6 +116,103 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
+/*
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+.carousel {
+    height: 360px;
+    position: relative;
+}
+
+.carousel>ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: 200ms opacity ease-in-out;
+    transition-delay: 200ms;
+}
+
+.slide>img {
+    display: block;
+    margin: auto;
+    margin-top: 4em;
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slide[data-active] {
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0ms;
+}
+
+.carousel-button {
+    position: absolute;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, .5);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+    color: rgb(100, 28, 167);
+}
+
+.carousel-button:focus {
+    outline: 1px solid black;
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}
+
+.carousel-caption {
+    padding-bottom: 40px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+}
+
+.carousel-vm {
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.carousel-vm:hover {
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(100, 28, 167);
+    color: white;
+}
+*/
 @media (min-width: 950px) {
   #mobile-header {
     display: none;
@@ -254,8 +351,8 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
     max-width: 256px;
     min-width: 256px;
-    max-height: 320px;
-    min-height: 320px;
+    max-height: 360px;
+    min-height: 360px;
     padding: 12px 6px;
     justify-content: space-between;
     margin: 8px 12px;
@@ -351,7 +448,8 @@ body::-webkit-scrollbar-thumb {
     color: black;
   }
   .evento .boton-evento-container .boton-evento {
-    padding: 8px 32px;
+    padding: 4px 32px;
+    margin: 2px 0;
     background-color: var(--color-blue);
     color: var(--color-black);
     border-radius: 6px;
