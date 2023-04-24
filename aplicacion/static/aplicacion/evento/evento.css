@@ -1,0 +1,138 @@
+@media (min-width: 950px) {
+  header {
+    padding: 2rem 2rem;
+  }
+  header a {
+    display: inherit;
+    text-decoration: none;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  header a div {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-black);
+  }
+  header a div * {
+    margin: 0 0.5rem;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main #titulo-evento {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  main #titulo-evento img {
+    height: 360px;
+  }
+  main #titulo-evento .title-container {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+  }
+  main #titulo-evento .title-container h1 {
+    padding: 1rem 2rem 0.5rem 2rem;
+    margin: 0;
+    color: rgb(242, 242, 247);
+  }
+  main #titulo-evento .title-container .subtitle-container {
+    padding: 0.5rem 2rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    color: rgb(209, 209, 214);
+  }
+  main #titulo-evento .title-container .subtitle-container .subtitle-item:first-child {
+    margin-right: 0.75rem;
+  }
+  main #titulo-evento .title-container .subtitle-container .subtitle-item:last-child {
+    margin-left: 0.75rem;
+  }
+  main #informacion-evento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    margin: 1rem 0;
+  }
+  main #informacion-evento .descripcion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  main #informacion-evento .descripcion .titulo-descripcion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  main #informacion-evento .descripcion .titulo-descripcion h2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0.75rem 0.5rem 0.75rem 0;
+  }
+  main #informacion-evento .descripcion .titulo-descripcion h2::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-black);
+    margin-top: 0.5rem;
+  }
+  main #informacion-evento .descripcion .titulo-descripcion i {
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+  }
+  main #informacion-evento .descripcion .titulo-descripcion i.toggled {
+    transform: rotate(-180deg);
+  }
+  main #informacion-evento .descripcion .contenido-descripcion {
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
+    margin: 0.25rem 0;
+    transform: translateY(-50%);
+    opacity: 0;
+    color: var(--color-black-4);
+  }
+  main #informacion-evento .descripcion .contenido-descripcion.toggled {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  main .compra-ticket {
+    display: flex;
+    align-items: center;
+    width: 80%;
+  }
+  main .compra-ticket .mapa img {
+    width: 360px;
+  }
+  main .compra-ticket .controllers-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  main .compra-ticket .controllers-container .inputs-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  main .compra-ticket .controllers-container .inputs-container .input-box {
+    display: flex;
+    align-items: center;
+  }
+  main .compra-ticket .controllers-container .inputs-container .input-box .circle-color {
+    width: 32px;
+    height: 32px;
+    background-color: red;
+    border-radius: 100%;
+  }
+}

@@ -50,6 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< Updated upstream
+=======
+    'django.contrib.sessions.middleware.SessionMiddleware',
+>>>>>>> Stashed changes
 ]
 
 ROOT_URLCONF = 'proyecto.urls'

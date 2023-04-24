@@ -1,5 +1,12 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="es">
+=======
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+>>>>>>> Stashed changes
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +23,7 @@
     <link rel="icon" href="{% static 'aplicacion/assets/images/icono.ico' %}" type="image/x-icon">
 
     <script src="{% static 'aplicacion/global/global.js' %}"></script>
+<<<<<<< Updated upstream
     <script src="{% static 'aplicacion/home/home.js' %}"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -119,4 +127,78 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+=======
+    <script src="{% static 'aplicacion/evento/evento.js' %}"></script>
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'home' %}">
+            <div>
+                <i class="bi bi-arrow-left"></i>
+                <span>Volver</span>
+            </div>
+        </a>
+    </header>
+
+    <main>
+        <section id="titulo-evento">
+            <img src="{{evento.imagen}}">
+            <div class="title-container">
+                <h1>{{evento.nombre}}</h1>
+                <div class="subtitle-container">
+                    <div class="subtitle-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>{{evento.lugar}}</span>
+                    </div>
+                    <div class="subtitle-item">
+                        <i class="bi bi-calendar3"></i>
+                        <span>{{evento.fecha}}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="informacion-evento">
+            <div class="descripcion">
+                <div class="titulo-descripcion">
+                    <h2>Descripción</h2>
+                    <i onclick="toggleDescription()" class="bi bi-caret-down-fill toggled"></i>
+                </div>
+                <p class="contenido-descripcion toggled">
+                    {{evento.descripcion}}
+                </p>
+            </div>
+        </section>
+
+        <form class="compra-ticket">
+            <section class="mapa">
+                <img src="https://static.puntoticket.com/especiales/lot136_ghost/img/mapa-v3.png" alt="Mapa Evento"
+                    class="img-fluid">
+            </section>
+            <section class="controllers-container">
+                <div class="inputs-container">
+                    <div class="input-box">
+                        <div class="circle-color"></div>
+                        <span class="tipo-entrada">VIP</span>
+                        <div class="precios">
+                            <div class="precio-container">
+                                <span class="precio">${{evento.valor_entrada}}</span>
+                                <input type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button></button>
+            </section>
+        </form>
+    </main>
+    <!-- Lo mismo que el Header, pero esta vez con el footer -->
+    {% include 'components/footer.html' %}
+
+    <!-- Y exactamente lo mismo, otra vez. Pero esta vez con el menú para teléfonos -->
+    {% include 'components/mobile-menu.html' %}
+</body>
+
+>>>>>>> Stashed changes
 </html>

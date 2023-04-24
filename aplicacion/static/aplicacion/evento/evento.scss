@@ -1,0 +1,139 @@
+@media (min-width: 950px) {
+    header {
+        padding: 2rem 2rem;
+        & a {
+            display: inherit;
+            text-decoration: none;
+            width: fit-content;
+            div {
+                display: flex;
+                align-items: center;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--color-black);
+                & * {
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & #titulo-evento {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            & img {
+                height: 360px;
+            }
+            & .title-container {
+                position: absolute;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                bottom: 0;
+                & h1 {
+                    padding: 1rem 2rem 0.5rem 2rem;
+                    margin: 0;
+                    color: rgb(242 242 247);
+                }
+                & .subtitle-container {
+                    padding: 0.5rem 2rem 1rem 2rem;
+                    display: flex;
+                    align-items: center;
+                    color: rgb(209 209 214);
+                    & .subtitle-item {
+                        &:first-child {
+                            margin-right: 0.75rem;
+                        }
+                        &:last-child {
+                            margin-left: 0.75rem;
+                        }
+                    }
+                }
+            }
+        }
+        & #informacion-evento {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            margin: 1rem 0;
+            & .descripcion {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                & .titulo-descripcion {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    & h2 {
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0.75rem 0.5rem 0.75rem 0;
+                        &::after {
+                            content: "";
+                            width: 100%;
+                            height: 1px;
+                            background-color: var(--color-black);
+                            margin-top: 0.5rem;
+                        }
+                    }
+                    & i {
+                        cursor: pointer;
+                        // transform: rotate(-180deg);
+                        transition: transform 0.5s ease-in-out;
+                        &.toggled {
+                            transform: rotate(-180deg);
+                        }
+                    }
+                }
+                & .contenido-descripcion {
+                    overflow: hidden;
+                    transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
+                    margin: 0.25rem 0;
+                    transform: translateY(-50%);
+                    opacity: 0;
+                    color: var(--color-black-4);
+                    &.toggled {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        & .compra-ticket {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            & .mapa img {
+                width: 360px;
+            }
+            & .controllers-container {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                & .inputs-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    & .input-box {
+                        display: flex;
+                        align-items: center;
+                        & .circle-color {
+                            width: 32px;
+                            height: 32px;
+                            background-color: red;
+                            border-radius: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
