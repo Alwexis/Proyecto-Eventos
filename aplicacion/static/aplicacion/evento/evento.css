@@ -135,4 +135,51 @@
     background-color: red;
     border-radius: 100%;
   }
+  main .mapa {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  main .mapa img {
+    width: 360px;
+  }
+  main .mapa form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .mapa form button[type=submit] {
+    width: 60%;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--color-blue);
+    color: whitesmoke;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  main .mapa form button[type=submit]:hover {
+    background-color: var(--color-blue-variant);
+    transform: scale(1.05);
+  }
+  main .mapa .tickets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .mapa .tickets table td {
+    padding: 0rem 1rem;
+  }
+  main .mapa .tickets table td .variant-ticket {
+    display: flex;
+    align-items: center;
+  }
+  main .mapa .tickets table td .variant-ticket .circle-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    margin-right: 0.5rem;
+  }
 }

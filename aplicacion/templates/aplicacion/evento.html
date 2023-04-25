@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream
-<!DOCTYPE html>
-<html lang="es">
-=======
 {% load static %}
+{% load customtags %}
 <!DOCTYPE html>
 <html lang="es">
 
->>>>>>> Stashed changes
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,111 +19,6 @@
     <link rel="icon" href="{% static 'aplicacion/assets/images/icono.ico' %}" type="image/x-icon">
 
     <script src="{% static 'aplicacion/global/global.js' %}"></script>
-<<<<<<< Updated upstream
-    <script src="{% static 'aplicacion/home/home.js' %}"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
-    
-    <section id="navbar">
-
-        <div id="logo">
-        </div>
-        <div id="menu">
-          <div class="menu-item">
-            <span>Eventos</span>
-          </div>
-          <div class=" menu-item">
-            <span>Acerca de</span>
-          </div>
-          <div class="menu-item">
-            <span>Mis Entradas</span>
-          </div>
-          <div class="menu-item profile">
-            <span class="material-symbols-outlined">
-              account_circle
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section id="title">
-        <div>
-            <span class="material-symbols-outlined">
-                confirmation_number
-            </span>
-            <h1>Ejemplo</h1>
-        </div>
-    </section>
- 
-    <div class="img-evento">
-        <picture>
-            <img src="../assets/images/ilustraciones/ilustracion_2.png" alt="event" class="img-fluid">
-         </picture>
-    </div>
-
-    <div class="cabecera">
-        
-        <div id="choose-tickets-section" class="scheme-section section pt-5 pb-5 fondo-morado">
-            <div class="section black-theme-light text-justify py-4">
-                <div class="container">
-                    <div class="col-12" id="price-section">
-                        <div class="row align-items-center">
-                            <div class="mapa">
-                                <img src="https://static.puntoticket.com/especiales/lot136_ghost/img/mapa-v3.png"
-                                    alt="Mapa Evento" class="img-fluid">
-                            </div>
-                            <!-- <div class="col-12 col-md-7 text-center">
-                                <img src="https://static.puntoticket.com/especiales/lot136_ghost/img/precios-V3.png"
-                                    alt="Precios" class="img-fluid">
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-            <div class="cover--disco">                                
-                <img src="../assets/images/ilustraciones/ilustracion_7.png" alt="disco portada" class="img-fluid" width="300px">                             
-            </div>
-
-            <p class="bx--txt__disco">
-             Están a punto de tomar una excelente decisión. Les garantizo que se llevarán una experiencia inolvidable que superará todas sus expectativas.
-             <br><br>
-             Este evento ha sido cuidadosamente diseñado para ofrecerles entretenimiento, diversión y una gran variedad de experiencias únicas que no encontrarán en ningún otro lugar.
-             <br><br>
-             No se pierdan la oportunidad de ser parte de este evento extraordinario. ¡Asegúrense de comprar sus tickets ahora mismo! Les prometo que no se arrepentirán. ¡Gracias por su atención y esperamos verlos pronto en nuestro evento!.
-             <br><br>
-             <strong style="text-align: justify;">Produce: Coliseo Producciones Limitada | RUT:&nbsp;77.462.533-K</strong>
-             <br><br>
-             <strong>*Todo público asistente al evento deberá contar con su ticket.</strong>
-             <br><br>
-             <strong>*Ticket On Point es el único medio oficial de ventas para este evento.&nbsp;</strong>
-            </p>
-        </div>
-    </div>
-
-    <div>
-        <div class="comprar-ticket">
-            <a href="#" class="btn btn-light">Comprar Entrada</a>
-        </div>  
-     </div>
-
-    <div class="info-ev">
-
-    </div>
-
-    <script src="../paginas/Evento/evento.js"></script>
-    <script src="../global.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-</body>
-=======
     <script src="{% static 'aplicacion/evento/evento.js' %}"></script>
 </head>
 
@@ -171,27 +62,123 @@
             </div>
         </section>
 
-        <form class="compra-ticket">
-            <section class="mapa">
-                <img src="https://static.puntoticket.com/especiales/lot136_ghost/img/mapa-v3.png" alt="Mapa Evento"
-                    class="img-fluid">
-            </section>
-            <section class="controllers-container">
-                <div class="inputs-container">
-                    <div class="input-box">
-                        <div class="circle-color"></div>
-                        <span class="tipo-entrada">VIP</span>
-                        <div class="precios">
-                            <div class="precio-container">
-                                <span class="precio">${{evento.valor_entrada}}</span>
-                                <input type="number">
-                            </div>
-                        </div>
-                    </div>
+        <div class="mapa">
+            <img src="{% static 'aplicacion/assets/images/escenario.png' %}" alt="Mapa Evento" class="img-fluid">
+
+            <div class="tickets">
+
+                <div id="ticket-selection-header">
+                    <h2 class="ticket-selection-title numbre-ticket">
+                        Selecciona tus entradas
+                    </h2>
                 </div>
-                <button></button>
-            </section>
-        </form>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <table class="tickets-event-sales bordered">
+
+                        <thead class="transparent">
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="ticket-data">
+
+                            <tr class="ga-product-detail">
+                                <td colspan="1" class=" p-t-xs ">
+                                    <div class="variant-ticket">
+                                        <div class="circle-color" style="background-color: var(--color-yellow);">
+                                        </div>
+                                        <h5 class="m-y-0 size-lg grey-text text-darken-2">
+                                            VIP
+                                        </h5>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <p class="display-inline black-text" id="ticket_price_4">
+                                        ${{evento.precio | percentIncrease:100}} CLP</p>
+                                </td>
+
+                                <td class="selector">
+                                    <input type="number" id="vip" name="vip" ticketValue="{{evento.precio | percentIncrease:100}}" value="0" min="0" max="5">
+                                </td>
+                            </tr>
+
+                            <tr class="ga-product-detail">
+                                <td colspan="1" class=" p-t-xs ">
+                                    <div class="form-group hidden cart_cart_items_ticket_id">
+                                    </div>
+                                    <div class="variant-ticket">
+                                        <div class="circle-color" style="background-color: var(--color-cyan);">
+                                        </div>
+                                        <h5 class="m-y-0 size-lg grey-text text-darken-2">
+                                            Cancha
+                                        </h5>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <p class="display-inline black-text" id="ticket_price_4">
+                                        ${{evento.precio | percentIncrease:50}} CLP</p>
+                                </td>
+
+                                <td class="selector">
+                                    <input type="number" id="cancha" name="cancha" ticketValue="{{evento.precio | percentIncrease:50}}" value="0" min="0" max="5">
+                                </td>
+                            </tr>
+
+                            <tr class="ga-product-detail">
+                                <td colspan="1" class=" p-t-xs ">
+                                    <div class="form-group hidden cart_cart_items_ticket_id">
+                                    </div>
+                                    <div class="variant-ticket">
+                                        <div class="circle-color" style="background-color: var(--color-green);">
+                                        </div>
+                                        <h5 class="m-y-0 size-lg grey-text text-darken-2">
+                                            Galeria Central
+                                        </h5>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <p class="display-inline black-text" id="ticket_price_4">
+                                        ${{evento.precio | percentIncrease:25}} CLP</p>
+                                </td>
+
+                                <td class="selector">
+                                    <input type="number" id="galeriaCentral" name="galeriaCentral" ticketValue="{{evento.precio | percentIncrease:25}}" value="0" min="0" max="5">
+                                </td>
+                            </tr>
+
+                            <tr class="ga-product-detail">
+                                <td colspan="1" class=" p-t-xs ">
+                                    <div class="variant-ticket">
+                                        <div class="circle-color" style="background-color: var(--color-blue);">
+                                        </div>
+                                        <h5 class="m-y-0 size-lg grey-text text-darken-2">
+                                            Galería Lateral
+                                        </h5>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <p class="display-inline black-text" id="ticket_price_4">${{evento.precio}} CLP</p>
+                                </td>
+
+                                <td class="selector">
+                                    <input type="number" id="galeriaLateral" name="galeriaLateral" ticketValue="{{evento.precio}}" value="0" min="0" max="5">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit">Pagar $<span id="total"></span></button>
+                </form>
+            </div>
+
+        </div>
+
+
+
     </main>
     <!-- Lo mismo que el Header, pero esta vez con el footer -->
     {% include 'components/footer.html' %}
@@ -200,5 +187,4 @@
     {% include 'components/mobile-menu.html' %}
 </body>
 
->>>>>>> Stashed changes
 </html>

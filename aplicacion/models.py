@@ -10,29 +10,18 @@ class Evento(models.Model):
     lugar = models.TextField(max_length=1024)
     imagen = models.TextField()
     precio = models.IntegerField()
+
     asientos = models.IntegerField()
     asientos_vip = models.IntegerField()
     asientos_cancha = models.IntegerField()
     asientos_galeriaLateral = models.IntegerField()
     asientos_galeriaCentral = models.IntegerField()
+
     url = models.TextField()
     descripcion = models.TextField()
 
     def __str__(self):
         return self.nombre
-
-#class Usuario(models.Model):
-#    rut = models.IntegerField(primary_key=True, unique=True)
-#    dv = models.TextField(max_length=1)
-#    nombres = models.TextField()
-#    apellidos = models.TextField()
-#    correo_electronico = models.EmailField(unique=True)
-#    numero_telefonico = models.IntegerField(null=True)
-#    contrasena = models.TextField()
-#    activo = models.BooleanField(default=True)
-#    
-#    def __str__(self):
-#        return self.nombres
     
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -78,6 +67,8 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
 class Ticket(models.Model):
     id = models.BigAutoField(primary_key=True)
+    tipoAsiento = models.TextField(max_length=128)
+    cantidad = models.IntegerField()
     comprador = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
     

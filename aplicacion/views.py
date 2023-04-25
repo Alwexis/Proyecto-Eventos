@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as django_login, authenticate, get_user_model, logout as django_logout
-from aplicacion.models import Evento
+from aplicacion.models import Evento, Ticket, Venta, Venta
 from django.core.paginator import Paginator
 from django.http import Http404
 from user_agents import parse
@@ -63,6 +63,86 @@ def registro(request):
             return render(request, 'aplicacion/registro.html', {'error': 'Error al registrar usuario'})
     return render(request, 'aplicacion/registro.html')
 
+@login_required(login_url='login')
 def evento(request, id):
     evento = Evento.objects.get(id=id)
+    if request.method == 'POST':
+        vip, cancha, galeriaLateral, galeriaCentral = int(request.POST['vip']), int(request.POST['cancha']), int(request.POST['galeriaLateral']), int(request.POST['galeriaCentral'])
+        if vip == 0 and cancha == 0 and galeriaLateral == 0 and galeriaCentral == 0:
+            return render(request, 'aplicacion/evento.html', { 'evento': evento, 'error': 'Debe seleccionar al menos una ubicación' })
+        else:
+            changes = False
+            if vip > 0:
+                evento.asientos -= int(vip)
+                evento.asientos_vip -= int(vip)
+                changes = True
+
+                ticketVip = Ticket(evento=evento, cantidad=int(vip), tipoAsiento='vip', comprador=request.user)
+                ticketVip.save()
+
+                monto = (evento.precio * 2) * int(vip)
+                venta = Venta(ticket=ticketVip, monto=monto, cantidad_articulos=vip)
+                venta.save()
+            if cancha > 0:
+                evento.asientos -= int(cancha)
+                evento.asientos_cancha -= int(cancha)
+                changes = True
+
+                ticketCancha = Ticket(evento=evento, cantidad=int(cancha), tipoAsiento='cancha', comprador=request.user)
+                ticketCancha.save()
+                
+                monto = (evento.precio +  evento.precio * 0.5) * int(vip)
+                venta = Venta(ticket=ticketCancha, monto=monto, cantidad_articulos=cancha)
+                venta.save()
+            if galeriaLateral > 0:
+                evento.asientos -= int(galeriaLateral)
+                evento.asientos_galeriaLateral -= int(galeriaLateral)
+                changes = True
+
+                ticketGaleriaLateral = Ticket(evento=evento, cantidad=int(galeriaLateral), tipoAsiento='galeria_lateral', comprador=request.user)
+                ticketGaleriaLateral.save()
+                
+                monto = evento.precio * int(vip)
+                venta = Venta(ticket=ticketCancha, monto=monto, cantidad_articulos=galeriaLateral)
+                venta.save()
+            if galeriaCentral > 0:
+                evento.asientos -= int(galeriaCentral)
+                evento.asientos_galeriaCentral -= int(galeriaCentral)
+                changes = True
+
+                ticketGaleriaCentral = Ticket(evento=evento, cantidad=int(galeriaCentral), tipoAsiento='galeria_central', comprador=request.user)
+                ticketGaleriaCentral.save()
+                
+                monto = (evento.precio +  evento.precio * 0.25) * int(vip)
+                venta = Venta(ticket=ticketCancha, monto=monto, cantidad_articulos=galeriaCentral)
+                venta.save()
+            if changes:
+                evento.save()
+                return redirect('/mis-eventos', { 'action': 'tickets_bought' })
     return render(request, 'aplicacion/evento.html', { 'evento': evento })
+
+@login_required(login_url='login')
+def misEventos(request):
+    eventos = []
+    tickets = Ticket.objects.filter(comprador=request.user).values()
+    for ticket in tickets:
+        evento = Evento.objects.get(id=ticket['evento_id'])
+        ticket['tipoAsientoFixed'] = ticket['tipoAsiento'].replace('_', ' ').capitalize()
+        monto = 0
+        if ticket['tipoAsiento'] == 'vip':
+            monto = (evento.precio * 2) * ticket['cantidad']
+        elif ticket['tipoAsiento'] == 'cancha':
+            monto = (evento.precio +  evento.precio * 0.5) * ticket['cantidad']
+        elif ticket['tipoAsiento'] == 'galeria_lateral':
+            monto = evento.precio * ticket['cantidad']
+        elif ticket['tipoAsiento'] == 'galeria_central':
+            monto = (evento.precio +  evento.precio * 0.25) * ticket['cantidad']
+
+        eventos.append({ 'evento': evento, 'venta': round(monto), 'ticket': ticket })
+    # Obtener el agente del usuario
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    user_agent_parsed = parse(user_agent)
+    # Verificar si el agente del usuario es un dispositivo móvil
+    is_mobile = user_agent_parsed.is_mobile
+
+    return render(request, 'aplicacion/mis-eventos.html', { 'eventos': eventos, 'is_mobile': is_mobile })
