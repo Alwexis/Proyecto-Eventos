@@ -1,0 +1,47 @@
+<header>
+    <!--* Only for Mobile Devices -->
+    <section id="mobile-header" class="logo">
+    </section>
+    <!--* Only for Mobile Devices -->
+
+    <section id="navbar">
+        <!-- 
+        * Cargaremos el SVG del Logo mediante una petición HTTP GET, para poder editar el color, etc.
+        * Y así no sobre cargar la página desde el código fuente con texto y hacerlo no legible.
+        -->
+        <div class="logo">
+        </div>
+        <div id="menu">
+            <div class="active menu-item">
+                <span>Eventos</span>
+            </div>
+            <div class="menu-item">
+                <span>Acerca de</span>
+            </div>
+            <div class="menu-item">
+                <span>Mis Entradas</span>
+            </div>
+            <section class="menu-item profile" id="profile-button">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'home' %}">
+                        <div class="profile-icon">
+                            <span class="material-symbols-outlined">
+                                account_circle
+                            </span>
+                        </div>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <div class="login">
+                            <span class="material-symbols-outlined">
+                                login
+                            </span>
+                            <span>Iniciar Sesión</span>
+                        </div>
+                    </a>
+                {% endif %}
+                </section>
+            </section>
+        </div>
+    </section>
+</header>
