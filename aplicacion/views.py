@@ -146,3 +146,12 @@ def misEventos(request):
     is_mobile = user_agent_parsed.is_mobile
 
     return render(request, 'aplicacion/mis-eventos.html', { 'eventos': eventos, 'is_mobile': is_mobile })
+
+@login_required(login_url='login')
+def perfil(request):
+    user = request.user
+    
+    return render(request, 'aplicacion/perfil.html', { 'usuario': user })
+
+def acercade(request):
+    return render(request, 'aplicacion/acerca-de.html')
